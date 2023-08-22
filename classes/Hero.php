@@ -6,13 +6,22 @@ class   Hero
 
     private int $id;
     private string $name;
-    private int $health_point = 100;
+    private int $health_point;
 
-    public function __construct($name)
+    public function __construct(array $array) 
     {
-        $this->name = $name;
-        
+        if (isset ($array['id'])) {
+            $this->setId($array['id']);
+        }
+
+        if (isset ($array['name'])) {
+            $this->setName($array['name']);
+        }
+        if (isset ($array['health_point'])) {
+            $this->setHealth_point($array['health_point']);
+        }
     }
+
 
     //GETTER SETTER NAME//
 
@@ -59,8 +68,14 @@ class   Hero
         return $this;
     }
 
-    public function hit()
+    public function hit(Monster $monster) : int
     {
-        
+        $damage = rand (0, 50);
+        $monsterHealthPoint = $monster->getHealth_point();
+        $monster->setHealth_point($monsterHealthPoint - $damage);
+
+        return $damage;
     }
+
+
 }
