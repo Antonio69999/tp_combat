@@ -2,7 +2,6 @@
 require_once('./config/autoload.php');
 require_once('./config/db.php');
 include('./functions/switch_case.php');
-
 ?>
 
 <?php

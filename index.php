@@ -25,7 +25,7 @@ include('./functions/switch_case.php');
             <div>
                 <h1><span>Who</span> Am <span>I</span> ?</h1>
                 <form method="post">
-                    <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+                    <input class="chosen-value" type="text" value="" id="name" name="name">
                     <ul class="value-list">
                         <li value="Isaac">Isaac</li>
                         <li value="Magdalene">Magdaleine</li>
@@ -34,13 +34,14 @@ include('./functions/switch_case.php');
                         <li value="Azazel">Azazel</li>
                         <li value="Lilith">Lilith</li>
                     </ul>
-                    <button class="chose" type="submit">Chose</button>
+                    <button class="chose" type="submit">Choose</button>
                 </form>
             </div>
         </div>
 
         <div>
         <?php
+
         $heroesManager = new HeroesManager($db);
 
         if (isset($_POST['name'])) {
@@ -64,7 +65,7 @@ include('./functions/switch_case.php');
                 echo $heroName . '<br>' . $hero->getHealth_point(); ?>
                 <form action="./fight.php" method="GET">
                     <input type="hidden" name="id_heroes" value="<?php echo $hero->getId() ?>">
-                    <button type="submit">Chose</button>
+                    <button id="choose" type="submit">Choose</button>
                 </form>
             </div>
 

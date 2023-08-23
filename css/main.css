@@ -77,7 +77,6 @@ form {
 .value-list {
   list-style: none;
   margin-top: 4rem;
-  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   max-height: 0;
   transition: 0.3s ease-in-out;
@@ -118,22 +117,31 @@ header {
 
 .heroes_cards {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 2px 16px;
-  padding-top: 250px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .chose {
-  padding-top: 150px;
   border: #000;
+  margin-top: 150px;
+  font-family: Isaac;
+  font-size: 40px;
+  margin-left: 80px;
+}
+
+#choose {
+  font-family: Isaac;
+  font-size: 30px;
+  margin-left: 80px;
 }
 
 .card {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   grid-gap: 20px;
-  border: grey 2px solid;
+  border: 2px solid grey;
   height: 250px;
   width: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -141,7 +149,7 @@ header {
   border-radius: 5px;
   text-align: center;
   font-size: 25px;
-  gap: 10px;
+  background-color: #635d5d;
 }
 
 .card:hover {

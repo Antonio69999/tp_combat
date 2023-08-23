@@ -52,7 +52,7 @@ inputField.addEventListener('focus', () => {
 });
 
 inputField.addEventListener('blur', () => {
-   inputField.placeholder = 'Select state';
+   inputField.placeholder = 'Choose a character';
   dropdown.classList.remove('open');
 });
 
