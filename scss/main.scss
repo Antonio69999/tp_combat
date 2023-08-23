@@ -1,27 +1,233 @@
-.hero {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+@font-face {
+    font-family: Isaac;
+    src: url(../assets/fonts/upheavtt.ttf);
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    -webkit-text-stroke: 3px black;
+
 }
+
+html {
+    background-image: url(../assets/background.png) !important;
+    background-size: cover;
+    font-family: Isaac !important;
+    -webkit-text-stroke-width: 0.25px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    color: whitesmoke;
+}
+
+h1 {
+    margin-top: 10vh;
+    font-size: 2.5rem;
+    max-width: 500px;
+    letter-spacing: 3px;
+    text-align: center;
+    line-height: 1.5;
+    font-family: 'Open Sans';
+    text-transform: capitalize;
+    font-weight: 800;
+    color: white;
+
+    span {
+        color: #FF908B;
+    }
+}
+
+form {
+    position: relative;
+    width: 18rem;
+    margin-top: 8vh;
+}
+
+.chosen-value,
+.value-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.chosen-value {
+    font-family: 'Ek Mukta';
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 4px;
+    height: 4rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    background-color: #FAFCFD;
+    border: 3px solid transparent;
+    transition: .3s ease-in-out;
+
+    &::-webkit-input-placeholder {
+        color: #333;
+    }
+
+    &:hover {
+        background-color: #FF908B;
+        cursor: pointer;
+
+        &::-webkit-input-placeholder {
+            color: #333;
+        }
+    }
+
+    &:focus,
+    &.open {
+        box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+        outline: 0;
+        background-color: #FF908B;
+        color: #000;
+
+        &::-webkit-input-placeholder {
+            color: #000;
+        }
+    }
+}
+
+.value-list {
+    list-style: none;
+    margin-top: 4rem;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: .3s ease-in-out;
+
+    &.open {
+        max-height: 320px;
+        overflow: auto;
+    }
+
+    li {
+        position: relative;
+        height: 4rem;
+        background-color: #FAFCFD;
+        padding: 1rem;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color .3s;
+        opacity: 1;
+
+        &:hover {
+            background-color: #FF908B;
+        }
+
+        &.closed {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            opacity: 0;
+        }
+    }
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+// header .hero__form {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 50px;
+//     font-size: 70px;
+// }
 
 .heroes_cards {
     display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2px 16px;
-    flex-wrap: wrap;
 }
 
 .card {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-gap: 20px;
-    border: black 1px solid;
-    height: 100px;
+    border: grey 2px solid;
+    height: 250px;
+    width: 400px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+    gap: 10px;
 }
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.chara {
+
+    &__isaac {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+    }
+
+    &__magdalene {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+    }
+
+    &__azazel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+    }
+
+    &__judas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+    }
+
+    &__blue_baby {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+    }
+
+    &__lilith {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+    }
+}
+
+.monster {
+
+    &__gaper {
+        width: 75px;
+        display: flex;
+    }
+}
+
+.fight_log {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+    font-size: 25px;
+}
+
+.damage {
+    color: red !important;
 }

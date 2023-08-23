@@ -68,6 +68,9 @@ class   HeroesManager
     public function updataHero(Hero $hero)
     {
         $sql = "UPDATE heroes SET health_point = :health_point WHERE id = :id";
-        
+        $query = $this->db->prepare($sql);
+        $query->bindValue(':id', $hero->getId());
+        $query->bindValue(':health_point', $hero->getHealth_point());
+        $query->execute();        
     }
 }

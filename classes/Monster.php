@@ -4,11 +4,13 @@
     {
         private string $name;
         private int $health_point;
+        private string $monsterImage;
 
-        public function __construct (string $name, int $health_point) 
+        public function __construct (string $name, int $health_point, string $monsterImage) 
         {
             $this->name = $name;
             $this->health_point = $health_point;
+            $this->monsterImage = $monsterImage;
         }
 
         /**
@@ -51,6 +53,26 @@
                 return $this;
         }
 
+         /**
+         * Get the value of monsterImage
+         */ 
+        public function getMonsterImage()
+        {
+                return $this->monsterImage;
+        }
+
+        /**
+         * Set the value of monsterImage
+         *
+         * @return  self
+         */ 
+        public function setMonsterImage($monsterImage)
+        {
+                $this->monsterImage = $monsterImage;
+
+                return $this;
+        }
+
         public function hit(Hero $hero) : int
     {
         $damage = rand (0, 50);
@@ -59,6 +81,8 @@
 
         return $damage;
     }
+
+       
     }
 
 ?>
