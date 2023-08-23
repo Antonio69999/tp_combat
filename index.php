@@ -21,28 +21,12 @@ include('./functions/switch_case.php');
 
     <!-- FORMULAIRE -->
     <header class="header">
-        <div class="hero">
+        <div class="form">
             <div>
-                <!-- <form class="hero__form" method="post">
-                    <h3><label for="name">Who Am I ?</label></h3>
-                    <select class="hero__select" name="name" id="name">
-                        <li value="">>Chose Your Character<</li>
-                        <li value="Isaac">Isaac</li>
-                        <li value="Magdalene">Magdaleine</li>
-                        <li value="Blue Baby">Blue Baby</li>
-                        <li value="Judas">Judas</li>
-                        <li value="Azazel">Azazel</li>
-                        <li value="Lilith">Lilith</li>
-                    </select>
-                    <button type="submit">Chose</button>
-                </form> -->
-
-
                 <h1><span>Who</span> Am <span>I</span> ?</h1>
-                <form>
+                <form method="post">
                     <input class="chosen-value" type="text" value="" placeholder="Type to filter">
                     <ul class="value-list">
-                        <li value="">Chose Your Character</li>
                         <li value="Isaac">Isaac</li>
                         <li value="Magdalene">Magdaleine</li>
                         <li value="Blue Baby">Blue Baby</li>
@@ -50,20 +34,24 @@ include('./functions/switch_case.php');
                         <li value="Azazel">Azazel</li>
                         <li value="Lilith">Lilith</li>
                     </ul>
+                    <button class="chose" type="submit">Chose</button>
                 </form>
-
-                <?php
-                $heroesManager = new HeroesManager($db);
-
-                if (isset($_POST['name'])) {
-                    // $heroesManager = $_POST['name'];
-                    $hero = new Hero(['name', 'health_point']);
-                    $hero->setName($_POST['name']);
-                    $heroesManager->addHero($hero);
-                }
-                ?>
             </div>
-    </header>
+        </div>
+
+        <div>
+        <?php
+        $heroesManager = new HeroesManager($db);
+
+        if (isset($_POST['name'])) {
+            // $heroesManager = $_POST['name'];
+            $hero = new Hero(['name', 'health_point']);
+            $hero->setName($_POST['name']);
+            $heroesManager->addHero($hero);
+        }
+        ?>
+        </div>
+        </header>
 
     <div class="heroes_cards">
         <?php
@@ -86,10 +74,8 @@ include('./functions/switch_case.php');
         ?>
 
     </div>
-
-    </div>
 </body>
 
-<script src="./script/form.js"></script> 
+<script src="./script/form.js"></script>
 
 </html>

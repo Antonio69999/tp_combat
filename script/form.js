@@ -1,9 +1,11 @@
 const inputField = document.querySelector('.chosen-value');
 const dropdown = document.querySelector('.value-list');
-const dropdownArray = [... document.querySelectorAll('li')];
-console.log(typeof dropdownArray)
+const dropdownArray = [...document.querySelectorAll('li')];
+const form = document.querySelector('form'); // Get the form element
+
 dropdown.classList.add('open');
-inputField.focus(); // Demo purposes only
+inputField.focus();
+
 let valueArray = [];
 dropdownArray.forEach(item => {
   valueArray.push(item.textContent);
@@ -52,6 +54,12 @@ inputField.addEventListener('focus', () => {
 inputField.addEventListener('blur', () => {
    inputField.placeholder = 'Select state';
   dropdown.classList.remove('open');
+});
+
+// Add a click event listener to the "Chose" button
+document.querySelector('.chose').addEventListener('click', (evt) => {
+  evt.preventDefault(); // Prevent the default form submission
+  form.submit(); // Manually submit the form
 });
 
 document.addEventListener('click', (evt) => {
