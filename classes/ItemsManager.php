@@ -9,25 +9,36 @@ class ItemsManager {
         $this->db = $db;
     }
 
-    public function getItemsForHero($heroID) {
-        $items = [];
-
-        // Remplacer cette requête par la requête SQL pour obtenir les objets associés au héros
-        $query = "SELECT id_items, nom_item FROM items WHERE id_heroes = :heroID";
-        $result = $this->db->prepare($query);
-        $result->bindParam(':heroID', $heroID, PDO::PARAM_INT);
-        $result->execute();
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $item = new Items($row['id_items'], $row['nom_object'], $heroID);
-            $items[] = $item;
-        }
-
-        return $items;
+    /**
+     * Get the value of db
+     */ 
+    public function getDb()
+    {
+        return $this->db;
     }
 
-    public function assignItemToHero($itemID, $heroID) {
-        
+    /**
+     * Set the value of db
+     *
+     * @return  self
+     */ 
+    public function setDb($db)
+    {
+        $this->db = $db;
+
+        return $this;
+    }
+
+    public function addItems(Items $items)
+    {
+        $sql = $this->db->query(
+            "INSERT INTO items (nom_item, id_heroes) 
+             VALUES (:nom_item, :id_heroes)");
+        $sql->bindValue('nom_item', $items->getNom_item());
+        $sql->execute();
+
+        $id = $this->db->lastInsertId();
+        $items->setId_heroes($id);
     }
 }
 

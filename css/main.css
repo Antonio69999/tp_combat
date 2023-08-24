@@ -29,20 +29,24 @@ h1 span {
   color: #FF908B;
 }
 
-form {
+.form_hero,
+.form_items {
   position: relative;
   width: 18rem;
 }
 
 .chosen-value,
-.value-list {
+.chosen-value_items,
+.value-list,
+.value-list-items {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
 
-.chosen-value {
+.chosen-value,
+.chosen-value-items {
   font-family: Isaac;
   text-transform: uppercase;
   font-weight: 600;
@@ -54,38 +58,48 @@ form {
   border: 3px solid transparent;
   transition: 0.3s ease-in-out;
 }
-.chosen-value::-webkit-input-placeholder {
+.chosen-value::-webkit-input-placeholder,
+.chosen-value-items::-webkit-input-placeholder {
   color: #333;
 }
-.chosen-value:hover {
+.chosen-value:hover,
+.chosen-value-items:hover {
   background-color: #FF908B;
   cursor: pointer;
 }
-.chosen-value:hover::-webkit-input-placeholder {
+.chosen-value:hover::-webkit-input-placeholder,
+.chosen-value-items:hover::-webkit-input-placeholder {
   color: #333;
 }
-.chosen-value:focus, .chosen-value.open {
+.chosen-value:focus, .chosen-value.open,
+.chosen-value-items:focus,
+.chosen-value-items.open {
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
   outline: 0;
   background-color: #FF908B;
   color: #000;
 }
-.chosen-value:focus::-webkit-input-placeholder, .chosen-value.open::-webkit-input-placeholder {
+.chosen-value:focus::-webkit-input-placeholder, .chosen-value.open::-webkit-input-placeholder,
+.chosen-value-items:focus::-webkit-input-placeholder,
+.chosen-value-items.open::-webkit-input-placeholder {
   color: #000;
 }
 
-.value-list {
+.value-list,
+.value-list-items {
   list-style: none;
   margin-top: 4rem;
   overflow: hidden;
   max-height: 0;
   transition: 0.3s ease-in-out;
 }
-.value-list.open {
+.value-list.open,
+.value-list-items.open {
   max-height: 320px;
   overflow: auto;
 }
-.value-list li {
+.value-list li,
+.value-list-items li {
   position: relative;
   height: 4rem;
   background-color: #FAFCFD;
@@ -97,10 +111,12 @@ form {
   transition: background-color 0.3s;
   opacity: 1;
 }
-.value-list li:hover {
+.value-list li:hover,
+.value-list-items li:hover {
   background-color: #FF908B;
 }
-.value-list li.closed {
+.value-list li.closed,
+.value-list-items li.closed {
   max-height: 0;
   overflow: hidden;
   padding: 0;
@@ -129,6 +145,13 @@ header {
   font-family: Isaac;
   font-size: 40px;
   margin-left: 80px;
+}
+
+.chose-item {
+  border: #000;
+  font-family: Isaac;
+  font-size: 37px;
+  margin-left: 100px;
 }
 
 #choose {
@@ -166,7 +189,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
+  width: 75px;
 }
 .chara__azazel {
   display: flex;

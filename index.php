@@ -24,11 +24,11 @@ include('./functions/switch_case.php');
         <div class="form">
             <div>
                 <h1><span>Who</span> Am <span>I</span> ?</h1>
-                <form method="post">
+                <form class="form_hero" method="get">
                     <input class="chosen-value" type="text" value="" id="name" name="name">
                     <ul class="value-list">
                         <li value="Isaac">Isaac</li>
-                        <li value="Magdalene">Magdaleine</li>
+                        <li value="Magdalene">Magdalene</li>
                         <li value="Blue Baby">Blue Baby</li>
                         <li value="Judas">Judas</li>
                         <li value="Azazel">Azazel</li>
@@ -39,40 +39,42 @@ include('./functions/switch_case.php');
             </div>
         </div>
 
+        <!-- FROMULAIRE ITEMS -->
+
         <div class="form">
             <div>
-                <h1><span>Select</span> An <span>Item</span>...</h1>
-                <form method="post">
-                    <input class="chosen-value" type="text" value="" id="name" name="name">
-                    <ul class="value-list">
-                        <li value="Cricket's Head">Cricket's Head</li>
-                        <li value="Brimstone">Brimstone</li>
-                        <li value="Magic Mushroom">Magic Mushroom</li>
-                        <li value="Sacred Heart">Sacred Heart</li>
-                        <li value="Polyphemus">Polyphemus</li>
-                        <li value="Mom's Knife">Mom's Knife</li>
-                    </ul>
-                    <button class="chose" type="submit">Choose</button>
+                <h1><span>My</span> stuff <span>?</span></h1>
+                <form class="form_hero" method="post">
+                    <label for="selectedItem"></label>
+                    <select id="selectedItem" name="selectedItem">
+                        <li value="Isaac">Isaac</li>
+                        <option value="brimstone">Brimstone</option>
+                        <option value="sacredheart">Sacred Heart</option>
+                    </select>
+                        <button class="chose" type="submit">Choose</button>
                 </form>
             </div>
         </div>
 
-        <!-- FORMULAIRE ITEMS -->
-
         <div>
-        <?php
+            <?php
 
-        $heroesManager = new HeroesManager($db);
+            $heroesManager = new HeroesManager($db);
+            $itemsManager = new ItemsManager($db);
 
-        if (isset($_POST['name'])) {
-            // $heroesManager = $_POST['name'];
-            $hero = new Hero(['name', 'health_point']);
-            $hero->setName($_POST['name']);
-            $heroesManager->addHero($hero);
-        }
-        ?>
+            if (isset($_POST['name']) && $_POST[', ']) {
+                // $heroesManager = $_POST['name'];
+                $hero = new Hero(['name', 'health_point']);
+                $hero->setName($_POST['name']);
+                $heroesManager->addHero($hero);
+
+
+            }
+
+
+            ?>
         </div>
-        </header>
+    </header>
 
     <div class="heroes_cards">
         <?php
@@ -98,5 +100,6 @@ include('./functions/switch_case.php');
 </body>
 
 <script src="./script/form.js"></script>
+<script src="./script/form_items.js"></script>
 
 </html>
