@@ -19,7 +19,7 @@ include('./functions/switch_case.php');
 
 <body>
 
-    <!-- FORMULAIRE -->
+    <!-- FORMULAIRE HERO -->
     <header class="header">
         <div class="form">
             <div>
@@ -38,6 +38,26 @@ include('./functions/switch_case.php');
                 </form>
             </div>
         </div>
+
+        <div class="form">
+            <div>
+                <h1><span>Select</span> An <span>Item</span>...</h1>
+                <form method="post">
+                    <input class="chosen-value" type="text" value="" id="name" name="name">
+                    <ul class="value-list">
+                        <li value="Cricket's Head">Cricket's Head</li>
+                        <li value="Brimstone">Brimstone</li>
+                        <li value="Magic Mushroom">Magic Mushroom</li>
+                        <li value="Sacred Heart">Sacred Heart</li>
+                        <li value="Polyphemus">Polyphemus</li>
+                        <li value="Mom's Knife">Mom's Knife</li>
+                    </ul>
+                    <button class="chose" type="submit">Choose</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FORMULAIRE ITEMS -->
 
         <div>
         <?php
@@ -64,7 +84,7 @@ include('./functions/switch_case.php');
                 switchCaseImage($heroName);
                 echo $heroName . '<br>' . $hero->getHealth_point(); ?>
                 <form action="./fight.php" method="GET">
-                    <input type="hidden" name="id_heroes" value="<?php echo $hero->getId() ?>">
+                    <input type="hidden" name="id_heroes" value="<?php echo $hero->getId_heroes() ?>">
                     <button id="choose" type="submit">Choose</button>
                 </form>
             </div>

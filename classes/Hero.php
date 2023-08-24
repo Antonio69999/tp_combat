@@ -4,14 +4,14 @@
 class   Hero
 {
 
-    private int $id;
+    private int $id_heroes;
     private string $name;
     private int $health_point;
 
     public function __construct(array $array) 
     {
-        if (isset ($array['id'])) {
-            $this->setId($array['id']);
+        if (isset ($array['id_heroes'])) {
+            $this->setId_heroes($array['id_heroes']);
         }
 
         if (isset ($array['name'])) {
@@ -55,18 +55,26 @@ class   Hero
 
     //GETTER SETTER ID//
 
-
-    public function getId()
+    /**
+     * Get the value of id_hero
+     */ 
+    public function getId_heroes()
     {
-        return $this->id;
+        return $this->id_heroes;
     }
 
-    public function setId($id)
+    /**
+     * Set the value of id_hero
+     *
+     * @return  self
+     */ 
+    public function setId_heroes($id_heroes)
     {
-        $this->id = $id;
+        $this->id_heroes = $id_heroes;
 
         return $this;
     }
+
 
     public function hit(Monster $monster) : int
     {
@@ -76,6 +84,4 @@ class   Hero
 
         return $damage;
     }
-
-
 }

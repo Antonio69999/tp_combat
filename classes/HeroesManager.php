@@ -37,7 +37,7 @@ class   HeroesManager
 
         // get last registered id
         $id = $this->db->lastInsertId();
-        $hero->setId($id);
+        $hero->setId_heroes($id);
     }
 
     public function findAllAlive()
@@ -53,13 +53,13 @@ class   HeroesManager
         return $heroe_array;
     }
 
-    public function findHeroById(int $id)
+    public function findHeroById(int $id_heroes)
 
 
     {
-        $query = 'SELECT * FROM heroes WHERE id = :idHeroes';
+        $query = 'SELECT * FROM heroes WHERE id_heroes = :id_heroes';
         $result = $this->db->prepare($query);
-        $heroId = $result->execute(['idHeroes' => $_GET['id_heroes']]);
+        $heroId = $result->execute(['id_heroes' => $id_heroes]);
         $heroId = $result->fetch(PDO::FETCH_ASSOC);
 
         return new Hero($heroId, $this->getDb());
@@ -67,9 +67,9 @@ class   HeroesManager
 
     public function updataHero(Hero $hero)
     {
-        $sql = "UPDATE heroes SET health_point = :health_point WHERE id = :id";
+        $sql = "UPDATE heroes SET health_point = :health_point WHERE id_heroes = :id";
         $query = $this->db->prepare($sql);
-        $query->bindValue(':id', $hero->getId());
+        $query->bindValue(':id', $hero->getId_heroes());
         $query->bindValue(':health_point', $hero->getHealth_point());
         $query->execute();        
     }
