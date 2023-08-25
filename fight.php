@@ -2,19 +2,41 @@
 require_once('./config/autoload.php');
 require_once('./config/db.php');
 include('./functions/switch_case.php');
-?>
 
-<?php
 $heroesManager = new HeroesManager($db);
-$hero = $heroesManager->findHeroById($_GET["id_heroes"]);
+$itemManager = new ItemManager($db);
+
+$heroId = $_GET["id_heroes"];
+$hero = $heroesManager->findHeroById($heroId);
+
+// Check if item was selected and associated with hero
+if (isset($_POST['selectedItemId'])) {
+    $selectedItemId = $_POST['selectedItemId'];
+    $item = $itemManager->getOneItembyId($selectedItemId);
+
+    if ($item) {
+        echo "Selected item: " . $item->getName();
+    } else {
+        echo "Item not found";
+    }
+
+    $heroesManager->associateItemWithHero($heroId, $selectedItemId);
+}
+
+$items = $heroesManager->getItemsForHero($hero->getId_heroes());
+
+foreach ($items as $itemData) {
+    $item = new Item($itemData);
+    $hero->addItem($item);
+}
 
 $fightManager = new FightsManager;
 $monster = $fightManager->createMonster('Gaper', 100, './assets/gaper.png');
 $fightResults = $fightManager->fight($hero, $monster);
 $heroesManager->updataHero($hero);
 
+// Output fight results
 foreach ($fightResults as $result) {
-    
     echo '<div>' . $result . '</div>' . "<br>";
 }
 ?>

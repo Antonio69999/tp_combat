@@ -54,8 +54,6 @@ class   HeroesManager
     }
 
     public function findHeroById(int $id_heroes)
-
-
     {
         $query = 'SELECT * FROM heroes WHERE id_heroes = :id_heroes';
         $result = $this->db->prepare($query);
@@ -71,6 +69,25 @@ class   HeroesManager
         $query = $this->db->prepare($sql);
         $query->bindValue(':id', $hero->getId_heroes());
         $query->bindValue(':health_point', $hero->getHealth_point());
-        $query->execute();        
+        $query->execute();
     }
+
+    public function associateItemWithHero($heroId, $itemId)
+    {
+        $sql = $this->db->prepare("UPDATE items SET id_heroes = :heroId WHERE id_items = :itemId");
+        $sql->bindValue(':heroId', $heroId);
+        $sql->bindValue(':itemId', $itemId);
+        $sql->execute();
+    }
+
+    public function getItemsForHero($heroId)
+    {
+        $sql = "SELECT * FROM items WHERE id_heroes = :heroId";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':heroId', $heroId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    
 }

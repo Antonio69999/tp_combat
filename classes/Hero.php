@@ -7,6 +7,7 @@ class   Hero
     private int $id_heroes;
     private string $name;
     private int $health_point;
+    private array $items = [];
 
     public function __construct(array $array) 
     {
@@ -75,13 +76,47 @@ class   Hero
         return $this;
     }
 
+     /**
+     * Get the value of items
+     */ 
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * Set the value of items
+     *
+     * @return  self
+     */ 
+
+
+    public function setItems($items)
+    {
+        $this->items = $items;
+
+        return $this;
+    }
+
 
     public function hit(Monster $monster) : int
     {
         $damage = rand (0, 50);
+        $additionalDamage = 0;
+        foreach ($this->items as $item) {
+            $additionalDamage += $item->getItem_damage();
+        }
+        $totalDamage = $damage + $additionalDamage;
         $monsterHealthPoint = $monster->getHealth_point();
-        $monster->setHealth_point($monsterHealthPoint - $damage);
+        $monster->setHealth_point($monsterHealthPoint - $totalDamage);
 
-        return $damage;
+        return $totalDamage;
     }
+
+    public function addItem(Item $item)
+    {
+        $this->items[] = $item;
+    }
+
+   
 }

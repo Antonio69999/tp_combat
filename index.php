@@ -4,6 +4,10 @@ require_once('./config/autoload.php');
 require_once('./config/db.php');
 include('./functions/switch_case.php');
 
+
+$heroesManager = new HeroesManager($db);
+$itemManager = new ItemManager($db);
+
 ?>
 
 <!DOCTYPE html>
@@ -34,24 +38,54 @@ include('./functions/switch_case.php');
                         <li value="Azazel">Azazel</li>
                         <li value="Lilith">Lilith</li>
                     </ul>
+
+                    <!-- MY STUFF -->
+                    <label for="itemSelect">
+                        <h1>My stuff</h1>
+                    </label>
+                    <select name="selectedItem" id="itemSelect">
+                        <?php
+                        $itemArray = $itemManager->getAllItems();
+                        foreach ($itemArray as $item) : ?>
+                            <option value="<?php echo $item->getId_items(); ?>">
+                                <?php echo $item->getName(); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <input type="hidden" name="selectedItemId" value="">
                     <button class="chose" type="submit">Choose</button>
                 </form>
             </div>
         </div>
         <div>
-        <?php
+            <?php
 
-        $heroesManager = new HeroesManager($db);
 
-        if (isset($_POST['name'])) {
-            // $heroesManager = $_POST['name'];
-            $hero = new Hero(['name', 'health_point']);
-            $hero->setName($_POST['name']);
-            $heroesManager->addHero($hero);
-        }
-        ?>
+
+            if (isset($_POST['name'])) {
+                // $heroesManager = $_POST['name'];
+                $hero = new Hero(['name', 'health_point']);
+                $hero->setName($_POST['name']);
+
+                if (isset($_POST['selectedItem'])) {
+                    $selectedItemId = $_POST['selectedItem'];
+                    $item = $itemManager->getOneItembyId($selectedItemId);
+
+                    if ($item) {
+                        echo "Select item : " . $item->getName();
+                    }
+                    else {
+                        echo "Item not found";
+                    }
+
+                    $heroesManager->addHero($hero);
+                    $heroesManager->associateItemWithHero($hero->getId_heroes(), $selectedItemId);
+                }
+            }
+            
+            ?>
         </div>
-        </header>
+    </header>
 
     <div class="heroes_cards">
         <?php
