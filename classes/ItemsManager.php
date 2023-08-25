@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Items.php';  // Inclure le modèle
+require_once('./config/autoload.php');
+require_once('./config/db.php');
+
 
 class ItemsManager {
     private $db;
